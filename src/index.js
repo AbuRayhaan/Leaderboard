@@ -1,21 +1,21 @@
-let books = [];
-const addButton = document.querySelector('#add-book');
-const bookList = document.querySelector('#books-list');
+import './style.css';
 
-const displayBooks = (id, title, author) => {
+let scores = [];
+const addButton = document.querySelector('#add-score');
+const scoreList = document.querySelector('#score-list');
+
+const displayScore = (id, name, score) => {
   const li = document.createElement('li');
   const br = document.createElement('br');
-  const removeButton = document.createElement('button');
-  removeButton.textContent = 'Remove';
 
   li.innerHTML = `
-      <p>${title}</p>
-      <p>${author}</p>
+      <p>${name}</p>
+      <p>${score}</p>
       <br>
       <div class="hr"></div>
     `;
   li.appendChild(br);
-  bookList.appendChild(li);
+  scoreList.appendChild(li);
 };
 
 const ErrorMsg = (error) => {
@@ -25,34 +25,34 @@ const ErrorMsg = (error) => {
   }, 2000);
 };
 
-const addBooks = (title, author) => {
+const addScores = (name, score) => {
   const id = Date.now();
-  const object = { id, title, author };
-  if (title === '' || author === '') {
+  const object = { id, name, score };
+  if (name === '' || score === '') {
     ErrorMsg('Kindly fill the fields');
   } else {
-    books.push(object);
-    localStorage.setItem('books', JSON.stringify(books));
-    document.getElementById('bookTitle').value = '';
-    document.getElementById('bookAuthor').value = '';
-    displayBooks(object.id, object.title, object.author);
+    scores.push(object);
+    localStorage.setItem('score', JSON.stringify(scores));
+    document.getElementById('userName').value = '';
+    document.getElementById('userScore').value = '';
+    displayScore(object.id, object.name, object.score);
   }
 };
 
-const getBookFromStorage = JSON.parse(localStorage.getItem('books'));
-if (getBookFromStorage) {
-  books = getBookFromStorage;
+const getScoreFromStorage = JSON.parse(localStorage.getItem('score'));
+if (getScoreFromStorage) {
+  scores = getScoreFromStorage;
 }
 
-books.forEach((book) => {
-  displayBooks(book.id, book.title, book.author);
+scores.forEach((index) => {
+  displayScore(index.id, index.name, index.score);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
   addButton.addEventListener('click', (n) => {
     n.preventDefault();
-    const title = document.getElementById('bookTitle').value;
-    const author = document.getElementById('bookAuthor').value;
-    addBooks(title, author);
+    const name = document.getElementById('userName').value;
+    const score = document.getElementById('userScore').value;
+    addScores(name, score);
   });
 });
