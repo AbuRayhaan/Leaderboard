@@ -9,7 +9,7 @@ const displayScore = (id, name, score) => {
   const br = document.createElement('br');
 
   li.innerHTML = `
-      <p>${name}</p>
+      <p>${name}: </p>
       <p>${score}</p>
       <br>
       <div class="hr"></div>
@@ -56,3 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
     addScores(name, score);
   });
 });
+
+if (scoreList !== null) {
+  scoreList.classList.add('list-border');
+} else {
+  scoreList.classList.remove('list-border');
+};

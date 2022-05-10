@@ -28,9 +28,29 @@ main {
 .board-header {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: 15px;
 }
 
-.add-item {
+#score-list {
+  padding-left: 0;
+}
+
+.list-border,
+form input,
+button {
+  border: 3px solid black;
+}
+
+.list-container ul li {
+  display: flex;
+  padding-left: 0;
+}
+.list-container ul li:nth-child(odd) {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.submit-container {
   display: flex;
   flex-direction: column;
   align-items: center;
