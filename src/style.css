@@ -1,0 +1,42 @@
+ul li {
+  list-style-type: none;
+  line-height: 0;
+}
+  
+a {
+  text-decoration: none;
+  color: black;
+}
+
+main {
+  margin-top: 54px;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-header {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
