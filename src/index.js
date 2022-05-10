@@ -1,29 +1,10 @@
 import './style.css';
+import ErrorMsg from './modules/error.js';
+import displayScore from './modules/display.js';
 
 let scores = [];
 const addButton = document.querySelector('#add-score');
 const scoreList = document.querySelector('#score-list');
-
-const displayScore = (id, name, score) => {
-  const li = document.createElement('li');
-  const br = document.createElement('br');
-
-  li.innerHTML = `
-      <p>${name}: </p>
-      <p>${score}</p>
-      <br>
-      <div class="hr"></div>
-    `;
-  li.appendChild(br);
-  scoreList.appendChild(li);
-};
-
-const ErrorMsg = (error) => {
-  document.querySelector('.error-msg').innerHTML = error;
-  setTimeout(() => {
-    document.querySelector('.error-msg').innerHTML = '';
-  }, 2000);
-};
 
 const addScores = (name, score) => {
   const id = Date.now();
@@ -61,4 +42,4 @@ if (scoreList !== null) {
   scoreList.classList.add('list-border');
 } else {
   scoreList.classList.remove('list-border');
-};
+}
