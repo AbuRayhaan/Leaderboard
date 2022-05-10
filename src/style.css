@@ -1,0 +1,93 @@
+ul li {
+  list-style-type: none;
+  line-height: 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+main {
+  margin-top: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 65px;
+}
+
+#score-list {
+  padding-left: 0;
+}
+
+.list-border,
+form input {
+  border: 3px solid black;
+}
+
+.list-container ul li {
+  display: flex;
+  padding-left: 0;
+}
+
+.list-container ul li p {
+  padding: 5px;
+}
+
+.list-container ul li:nth-child(odd) {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.submit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+button {
+  border: 3px solid black;
+  box-shadow: 3px 3px;
+}
+
+form input,
+form button {
+  padding: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    margin-top: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 170px;
+  }
+}
