@@ -12,6 +12,7 @@ main {
   margin-top: 54px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .container {
@@ -39,4 +40,5 @@ form {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  gap: 10px;
 }

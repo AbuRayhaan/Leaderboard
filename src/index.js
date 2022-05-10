@@ -1,18 +1,21 @@
-let score = [];
-const addScore = document.querySelector('#add-score');
-const scoreList = document.querySelector('#board-list');
+let books = [];
+const addButton = document.querySelector('#add-book');
+const bookList = document.querySelector('#books-list');
 
-const displayScores = (id, name, score) => {
+const displayBooks = (id, title, author) => {
   const li = document.createElement('li');
   const br = document.createElement('br');
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'Remove';
 
   li.innerHTML = `
-  <p>${name}</p>
-  <p>${score}</p>
-  <br>
-  `;
+      <p>${title}</p>
+      <p>${author}</p>
+      <br>
+      <div class="hr"></div>
+    `;
   li.appendChild(br);
-  scoreList.appendChild(li);
+  bookList.appendChild(li);
 };
 
 const ErrorMsg = (error) => {
@@ -22,35 +25,34 @@ const ErrorMsg = (error) => {
   }, 2000);
 };
 
-const addScore = (name, score) => {
+const addBooks = (title, author) => {
   const id = Date.now();
-  const object = { id, name, score };
-
-  if (name === '' || score === '') {
-      ErrorMsg('Kindly fill the fields');
+  const object = { id, title, author };
+  if (title === '' || author === '') {
+    ErrorMsg('Kindly fill the fields');
   } else {
-      score.push(object);
-      localStorage.setItem('score', JSON.stringify(score));
-      document.getElementById('userName').value = '';
-      document.getElementById('userScore').value = '';
-      displayScores(object.id, object.name, object.score);
+    books.push(object);
+    localStorage.setItem('books', JSON.stringify(books));
+    document.getElementById('bookTitle').value = '';
+    document.getElementById('bookAuthor').value = '';
+    displayBooks(object.id, object.title, object.author);
   }
+};
+
+const getBookFromStorage = JSON.parse(localStorage.getItem('books'));
+if (getBookFromStorage) {
+  books = getBookFromStorage;
 }
 
-const getScoreFromStorage = JSON.parse(localStorage.getItem('score'));
-if (getScoreFromStorage) {
-  score = getScoreFromStorage;
-}
-
-score.forEach((i) => {
-  displayScores(i.id, i.name, i.score);
+books.forEach((book) => {
+  displayBooks(book.id, book.title, book.author);
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-  addScore.addEventListener('click', (n) => {
-      n.preventDefault();
-      const name = document.getElementById('userName').value;
-      const score = document.getElementById('userScore').value;
-      addScore(name, score);
+  addButton.addEventListener('click', (n) => {
+    n.preventDefault();
+    const title = document.getElementById('bookTitle').value;
+    const author = document.getElementById('bookAuthor').value;
+    addBooks(title, author);
   });
 });
