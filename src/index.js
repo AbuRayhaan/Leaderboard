@@ -50,7 +50,7 @@ const createList = async () => {
     .then((response) => response.json())
     .then((json) => {
       scoreList.innerHTML = `${json.result.sort((a, b) => b.score - a.score).
-        map((score, index) => `<li class="scoreItem"><span>${index + 1}.</span>${score.user}: ${score.score}</li>`).join('')}`;
+        map((score, index) => `<li class="scoreItem">${score.user}: ${score.score}</li>`).join('')}`;
     });
 };
 

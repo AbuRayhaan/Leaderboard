@@ -33,11 +33,25 @@ main {
 }
 
 #score-list {
-  padding-left: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  border: 3px solid black;
 }
 
+.list-container ul li:nth-child(odd) {
+  background-color: rgba(128, 128, 128, 0.5);
+  height: 10px;
+  padding-top: 20px;
+}
+
+.scoreItem {
+  font-size: 20px;
+  padding: 10px;
+}
+
+/*
 .list-border,
 form input {
   border: 3px solid black;
@@ -55,7 +69,7 @@ form input {
 .list-container ul li:nth-child(odd) {
   background-color: rgba(128, 128, 128, 0.5);
 }
-
+*/
 .submit-container {
   display: flex;
   flex-direction: column;
@@ -67,6 +81,10 @@ form {
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
+}
+
+form input {
+  border: 3px solid black;
 }
 
 button {
