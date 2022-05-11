@@ -34,6 +34,8 @@ main {
 
 #score-list {
   padding-left: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .list-border,
