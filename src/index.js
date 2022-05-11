@@ -1,52 +1,62 @@
 import './style.css';
 
-const refreshBtn = document.querySelector('.refresh');
-const form = document.querySelector('form');
+const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
+const gameID = '81kYyJKWPP59Yc9k4NXm'; //
+const requestURL = `${baseURL}${gameID}/scores/`;
 
-const createScore = (val) => {
-  const scoreList = document.querySelector('#score-list');
-  scoreList.innerHTML = '';
-  // console.log(val);
+const userName = document.querySelector('#userName');
+const userScore = document.querySelector('#userScore');
+const form = document.querySelector('.form-scores');
+const inputs = document.querySelectorAll('input');
+const confirmationMsg = document.querySelector('.error-msg');
+const scoreList = document.querySelector('#score-list');
 
-  val.foreach((game, index) => {
-    const li = document.createElement('li');
-    li.textContent = `${game.user}: ${game.score}`;
-    li.id = index;
-    scoreList.appendChild(li);
-  });
-};
-
-const getScore = async () => {
-  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/0wasy4f9wnQ6KNT6X9R5/scores/');
-  const { data } = await response.json();
-  return data;
-}
-
-const setScore = async (score) => {
-  const response = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/0wasy4f9wnQ6KNT6X9R5/scores/', {
+const setScore = async () => {
+  await fetch(requestURL, {
     method: 'POST',
+    body: JSON.stringify({
+      user: userName.value,
+      score: userScore.value,
+    }),
     headers: {
-      'Content-Type': 'application/json',
+      'Content-type': 'application/json; charset=UTF-8',
     },
-    body: JSON.stringify(score),
-  });
-
-  const { data } = await response.json();
-  return data;
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      confirmationMsg.innerText = json.result;
+      confirmationMsg.classList.add('active');
+    });
 };
 
-const displayScores = async () => {
-  const result = await getScore();
-  createScore(result);
-};
-
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const { userName, userScore } = form.elements;
-  const game = { user: userName.value, score: userScore.value };
-  form.reset();
-  await setScore(game);
-  displayScores();
+  if (userName.value && userScore.value) {
+    setScore();
+    userName.value = '';
+    userScore.value = '';
+  }
 });
 
-refreshBtn.addEventListener('click', displayScores);
+inputs.forEach((input) => {
+  input.addEventListener('input', () => {
+    confirmationMsg.innerText = '';
+    confirmationMsg.classList.remove('active');
+  });
+});
+
+const createList = async () => {
+  await fetch(requestURL)
+    .then((response) => response.json())
+    .then((json) => {
+      scoreList.innerHTML = `${json.result.sort((a, b) => b.score - a.score).
+        map((score, index) => `<li class="scoreItem"><span>${index + 1}.</span>${score.user}: ${score.score}</li>`).join('')}`;
+    });
+};
+
+createList();
+
+const refreshBtn = document.querySelector('.refresh');
+refreshBtn.addEventListener('click', () => {
+  createList();
+});
