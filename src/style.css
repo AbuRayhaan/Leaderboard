@@ -51,25 +51,6 @@ main {
   padding: 10px;
 }
 
-/*
-.list-border,
-form input {
-  border: 3px solid black;
-}
-
-.list-container ul li {
-  display: flex;
-  padding-left: 0;
-}
-
-.list-container ul li p {
-  padding: 5px;
-}
-
-.list-container ul li:nth-child(odd) {
-  background-color: rgba(128, 128, 128, 0.5);
-}
-*/
 .submit-container {
   display: flex;
   flex-direction: column;

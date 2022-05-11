@@ -49,8 +49,8 @@ const createList = async () => {
   await fetch(requestURL)
     .then((response) => response.json())
     .then((json) => {
-      scoreList.innerHTML = `${json.result.sort((a, b) => b.score - a.score).
-        map((score, index) => `<li class="scoreItem">${score.user}: ${score.score}</li>`).join('')}`;
+      scoreList.innerHTML = `${json.result.sort((a, b) => b.score - a.score)
+        .map((score) => `<li class="scoreItem">${score.user}: ${score.score}</li>`).join('')}`;
     });
 };
 
