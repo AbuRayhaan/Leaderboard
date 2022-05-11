@@ -6,6 +6,7 @@ const form = document.querySelector('form');
 const createScore = (val) => {
   const scoreList = document.querySelector('#score-list');
   scoreList.innerHTML = '';
+  // console.log(val);
 
   val.foreach((game, index) => {
     const li = document.createElement('li');
