@@ -1,4 +1,7 @@
-import { requestURL, scoreList } from './index.js';
+const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
+const gameID = '81kYyJKWPP59Yc9k4NXm';
+const requestURL = `${baseURL}${gameID}/scores/`;
+const scoreList = document.querySelector('#score-list');
 
 const createList = async () => {
   await fetch(requestURL)

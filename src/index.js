@@ -10,7 +10,6 @@ const userScore = document.querySelector('#userScore');
 const form = document.querySelector('.form-scores');
 const inputs = document.querySelectorAll('input');
 const confirmationMsg = document.querySelector('.error-msg');
-const scoreList = document.querySelector('#score-list');
 
 const setScore = async () => {
   await fetch(requestURL, {
@@ -52,5 +51,3 @@ const refreshBtn = document.querySelector('.refresh');
 refreshBtn.addEventListener('click', () => {
   createList();
 });
-
-export { requestURL, scoreList };
