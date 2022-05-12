@@ -2,7 +2,7 @@
 
 ![screenshot](images/screenshot.png)
 
-This is my To-Do List project in the Microverse curriculum.
+This is my Leaderboard project in the Microverse curriculum.
 
 ## Built With
 
