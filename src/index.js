@@ -1,45 +1,53 @@
 import './style.css';
-import ErrorMsg from './modules/error.js';
-import displayScore from './modules/display.js';
+import createList from './display.js';
 
-let scores = [];
-const addButton = document.querySelector('#add-score');
-const scoreList = document.querySelector('#score-list');
+const baseURL = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/';
+const gameID = '81kYyJKWPP59Yc9k4NXm'; //
+const requestURL = `${baseURL}${gameID}/scores/`;
 
-const addScores = (name, score) => {
-  const id = Date.now();
-  const object = { id, name, score };
-  if (name === '' || score === '') {
-    ErrorMsg('Kindly fill the fields');
-  } else {
-    scores.push(object);
-    localStorage.setItem('score', JSON.stringify(scores));
-    document.getElementById('userName').value = '';
-    document.getElementById('userScore').value = '';
-    displayScore(object.id, object.name, object.score);
-  }
+const userName = document.querySelector('#userName');
+const userScore = document.querySelector('#userScore');
+const form = document.querySelector('.form-scores');
+const inputs = document.querySelectorAll('input');
+const confirmationMsg = document.querySelector('.error-msg');
+
+const setScore = async () => {
+  await fetch(requestURL, {
+    method: 'POST',
+    body: JSON.stringify({
+      user: userName.value,
+      score: userScore.value,
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => {
+      confirmationMsg.innerText = json.result;
+      confirmationMsg.classList.add('active');
+    });
 };
 
-const getScoreFromStorage = JSON.parse(localStorage.getItem('score'));
-if (getScoreFromStorage) {
-  scores = getScoreFromStorage;
-}
-
-scores.forEach((index) => {
-  displayScore(index.id, index.name, index.score);
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (userName.value && userScore.value) {
+    setScore();
+    userName.value = '';
+    userScore.value = '';
+  }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  addButton.addEventListener('click', (n) => {
-    n.preventDefault();
-    const name = document.getElementById('userName').value;
-    const score = document.getElementById('userScore').value;
-    addScores(name, score);
+inputs.forEach((input) => {
+  input.addEventListener('input', () => {
+    confirmationMsg.innerText = '';
+    confirmationMsg.classList.remove('active');
   });
 });
 
-if (scoreList !== null) {
-  scoreList.classList.add('list-border');
-} else {
-  scoreList.classList.remove('list-border');
-}
+createList();
+
+const refreshBtn = document.querySelector('.refresh');
+refreshBtn.addEventListener('click', () => {
+  createList();
+});
