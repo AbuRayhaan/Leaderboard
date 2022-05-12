@@ -49,7 +49,7 @@ addButton.addEventListener('click', (n) => {
     userName.value = '';
     userScore.value = '';
   }
-})
+});
 
 inputs.forEach((input) => {
   input.addEventListener('input', () => {
