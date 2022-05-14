@@ -1,6 +1,6 @@
 # Leaderboard
 
-![screenshot](images/screenshot2.png)
+![screenshot](images/sshot2.png)
 
 This is my Leaderboard project in the Microverse curriculum.
 
