@@ -1,6 +1,6 @@
 # Leaderboard
 
-![screenshot](images/screenshot.png)
+![screenshot](images/screenshot2.png)
 
 This is my Leaderboard project in the Microverse curriculum.
 
@@ -10,6 +10,11 @@ This is my Leaderboard project in the Microverse curriculum.
 - CSS
 - Javascript (Webpack)
 - GitHub
+- Leaderboard External API Service
+
+## Live Demo
+
+[Live Demo Link](https://aburayhaan.github.io/Leaderboard/)
 
 ## Getting Started
 
