@@ -50,7 +50,7 @@ main {
 }
 
 .list-container ul li:nth-child(odd) {
-  background-color: rgb(230, 135, 135);
+  background-color: rgb(230, 135, 135, 0.9);
   height: 10px;
   padding-top: 20px;
 }
